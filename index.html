@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bravo Six Dark Mode</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Overlay -->
+  <div id="overlay" class="overlay hidden">
+    <svg>
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix"
+              values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 20 -10" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </defs>
+    </svg>
+    <div class="morphing-text-container">
+      <div class="morphing-text" id="morph-text">Bravo</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <button id="toggle-btn">Toggle Dark Mode</button>
+  </div>
+
+  <audio id="bravo-audio" src="bravo-six-dark.mp3" preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
