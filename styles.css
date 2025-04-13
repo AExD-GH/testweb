@@ -1,50 +1,34 @@
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #ffffff;
-  color: #000000;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background 0.4s ease, color 0.4s ease;
+  font-family: sans-serif;
+  background: white;
+  color: black;
+  overflow-x: hidden;
 }
 
 body.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-.container {
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
-#toggle-btn {
-  padding: 12px 24px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  background-color: #007bff;
+  background: #111;
   color: white;
-  transition: background-color 0.3s;
 }
 
-#toggle-btn:hover {
-  background-color: #0056b3;
+button {
+  margin: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-/* Overlay styles */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  z-index: 9999;
+  height: 100vh;
+  width: 100vw;
+  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1s ease;
@@ -56,18 +40,67 @@ body.dark-mode {
   pointer-events: auto;
 }
 
+.overlay.exit {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
 .overlay.hidden {
   display: none;
 }
 
-.morphing-text-container {
+.blobs {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: #0ea5e9;
+  border-radius: 50%;
+  animation: moveBlobs 6s infinite ease-in-out;
+}
+
+.blob:nth-child(1) {
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+.blob:nth-child(2) {
+  top: 50%;
+  left: 60%;
+  animation-delay: 1.5s;
+}
+.blob:nth-child(3) {
+  top: 70%;
+  left: 40%;
+  animation-delay: 3s;
+}
+
+@keyframes moveBlobs {
+  0%, 100% {
+    transform: scale(1.1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.4) translate(20px, 10px);
+  }
+}
+
+.typing-text-container {
   font-size: 2.5rem;
   font-weight: bold;
   color: #0ea5e9;
-  animation: fadeIn 1s ease-in-out;
+  z-index: 10;
+  animation: fadeInText 0.8s ease forwards;
+  opacity: 0;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
 }
